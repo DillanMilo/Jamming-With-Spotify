@@ -36,6 +36,7 @@ function App() {
   return (
     <div className="App">
       <SearchBar /> {/* Render the SearchBar component */}
+      <h1>JamMming</h1>
       <SearchResults searchResults={searchResults} />{" "}
       {/* Render the SearchResults component */}
       {/* You can remove the count state and related code if it's no longer needed */}
