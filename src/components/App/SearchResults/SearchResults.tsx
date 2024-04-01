@@ -1,36 +1,24 @@
-import { Input, InputGroup, InputLeftElement, Button } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
+import Track from "../Track/Track";
+import { TrackType } from "../Types";
 
-const SearchBar = () => {
+type SearchResultsProps = {
+  searchResults: TrackType[];
+};
+
+const SearchResults = ({ searchResults }: SearchResultsProps) => {
   return (
-    <InputGroup>
-      <InputLeftElement
-        pointerEvents="none"
-        children={<SearchIcon color="gray.300" />}
-      />
-      <Input
-        type="text"
-        placeholder="Search songs, artists, albums..."
-        variant="filled"
-        bg="gray.100"
-        _hover={{
-          bg: "gray.200",
-        }}
-        _focus={{
-          bg: "white",
-          borderColor: "green.500",
-        }}
-      />
-      <Button
-        ml={2}
-        colorScheme="green"
-        px={8}
-        onClick={() => console.log("Search")}
-      >
-        Search
-      </Button>
-    </InputGroup>
+    <Box padding="4" bg="gray.900" color="white">
+      <Heading as="h2" size="lg" mb="4">
+        Search Results
+      </Heading>
+      <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }} spacing="4">
+        {searchResults.map((track) => (
+          <Track key={track.id} track={track} />
+        ))}
+      </SimpleGrid>
+    </Box>
   );
 };
 
-export default SearchBar;
+export default SearchResults;
