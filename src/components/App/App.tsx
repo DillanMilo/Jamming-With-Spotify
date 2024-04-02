@@ -37,6 +37,9 @@ function App() {
   // State to store the user's playlist tracks
   const [playlistTracks, setPlaylistTracks] = useState<TrackType[]>([]);
 
+  // State to store the playlist name
+  const [playlistName, setPlaylistName] = useState("New Playlist");
+
   // Function to add a track to the playlist
   const addTrackToPlaylist = (trackToAdd: TrackType) => {
     if (playlistTracks.find((track) => track.id === trackToAdd.id)) {
@@ -52,6 +55,11 @@ function App() {
     );
   };
 
+  // Function to handle the change of the playlist name
+  const handleNameChange = (name: string) => {
+    setPlaylistName(name);
+  };
+
   // Placeholder function to simulate saving a playlist to Spotify
   const savePlaylist = (name: string, trackUris: string[]) => {
     console.log("Saving playlist to Spotify...");
@@ -61,9 +69,10 @@ function App() {
 
   // Function to handle the actual save action (to be connected later)
   const handleSavePlaylist = () => {
-    const playlistName = "New Playlist"; // Placeholder name, you can make this dynamic
-    const trackUris = playlistTracks.map((track) => track.uri);
-    savePlaylist(playlistName, trackUris);
+    savePlaylist(
+      playlistName,
+      playlistTracks.map((track) => track.uri)
+    );
   };
 
   // Function to handle search (to be replaced with Spotify API call)
@@ -77,13 +86,15 @@ function App() {
 
   return (
     <div className="App">
+      <h1>JamMming</h1>
       <SearchBar onSearch={handleSearch} />
-      <h1>JamMming with Charlie</h1>
       <SearchResults searchResults={searchResults} onAdd={addTrackToPlaylist} />
       <Playlist
         tracks={playlistTracks}
         onRemove={removeTrackFromPlaylist}
         onSave={handleSavePlaylist}
+        playlistName={playlistName}
+        onNameChange={handleNameChange}
       />
     </div>
   );
