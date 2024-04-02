@@ -52,6 +52,20 @@ function App() {
     );
   };
 
+  // Placeholder function to simulate saving a playlist to Spotify
+  const savePlaylist = (name: string, trackUris: string[]) => {
+    console.log("Saving playlist to Spotify...");
+    console.log(`Playlist Name: ${name}`);
+    console.log(`Track URIs: ${trackUris}`);
+  };
+
+  // Function to handle the actual save action (to be connected later)
+  const handleSavePlaylist = () => {
+    const playlistName = "New Playlist"; // Placeholder name, you can make this dynamic
+    const trackUris = playlistTracks.map((track) => track.uri);
+    savePlaylist(playlistName, trackUris);
+  };
+
   // Function to handle search (to be replaced with Spotify API call)
   const handleSearch = (term: string) => {
     // Placeholder functionality for filtering hardcoded search results
@@ -64,9 +78,13 @@ function App() {
   return (
     <div className="App">
       <SearchBar onSearch={handleSearch} />
-      <h1>Jammming</h1>
+      <h1>JamMming with Charlie</h1>
       <SearchResults searchResults={searchResults} onAdd={addTrackToPlaylist} />
-      <Playlist tracks={playlistTracks} onRemove={removeTrackFromPlaylist} />
+      <Playlist
+        tracks={playlistTracks}
+        onRemove={removeTrackFromPlaylist}
+        onSave={handleSavePlaylist}
+      />
     </div>
   );
 }
