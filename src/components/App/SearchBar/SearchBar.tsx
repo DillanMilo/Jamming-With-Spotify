@@ -13,6 +13,7 @@ const SearchBar = () => {
         placeholder="Search songs, artists, albums..."
         variant="filled"
         bg="gray.100"
+        color="gray.800"
         _hover={{
           bg: "gray.200",
         }}

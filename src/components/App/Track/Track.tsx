@@ -4,9 +4,10 @@ import { TrackType } from "../Types";
 
 type TrackProps = {
   track: TrackType;
+  onAdd: (track: TrackType) => void; // Add this line to include the onAdd function
 };
 
-const Track = ({ track }: TrackProps) => {
+const Track = ({ track, onAdd }: TrackProps) => {
   return (
     <Box bg="gray.800" borderRadius="md" padding="4" boxShadow="md">
       <Image borderRadius="md" src={track.albumImageUrl} alt={track.album} />
@@ -19,7 +20,7 @@ const Track = ({ track }: TrackProps) => {
         leftIcon={<AddIcon />}
         colorScheme="green"
         size="sm"
-        onClick={() => console.log("Add track")}
+        onClick={() => onAdd(track)} // Call the onAdd function with the track's information
       >
         Add to Playlist
       </Button>
