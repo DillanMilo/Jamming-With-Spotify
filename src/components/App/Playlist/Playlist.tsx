@@ -4,6 +4,7 @@ import { TrackType } from "../Types"; // Import the type definition
 
 type PlaylistProps = {
   tracks: TrackType[];
+  onRemove: (track: TrackType) => void;
 };
 
 const Playlist = ({ tracks }: PlaylistProps) => {

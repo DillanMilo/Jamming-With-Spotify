@@ -45,12 +45,28 @@ function App() {
     setPlaylistTracks((previousTracks) => [...previousTracks, trackToAdd]);
   };
 
+  // Function to remove a track from the playlist
+  const removeTrackFromPlaylist = (trackToRemove: TrackType) => {
+    setPlaylistTracks(
+      playlistTracks.filter((track) => track.id !== trackToRemove.id)
+    );
+  };
+
+  // Function to handle search (to be replaced with Spotify API call)
+  const handleSearch = (term: string) => {
+    // Placeholder functionality for filtering hardcoded search results
+    const filteredResults = searchResults.filter((track) =>
+      track.title.toLowerCase().includes(term.toLowerCase())
+    );
+    setSearchResults(filteredResults);
+  };
+
   return (
     <div className="App">
-      <SearchBar /> {/* Render the SearchBar component */}
-      <h1>JamMming</h1>
+      <SearchBar onSearch={handleSearch} />
+      <h1>Jammming</h1>
       <SearchResults searchResults={searchResults} onAdd={addTrackToPlaylist} />
-      <Playlist tracks={playlistTracks} />
+      <Playlist tracks={playlistTracks} onRemove={removeTrackFromPlaylist} />
     </div>
   );
 }

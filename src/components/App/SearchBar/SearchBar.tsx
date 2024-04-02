@@ -1,33 +1,30 @@
+// In SearchBar.tsx
+import { useState } from "react";
 import { Input, InputGroup, InputLeftElement, Button } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  onSearch: (term: string) => void;
+};
+
+const SearchBar = ({ onSearch }: SearchBarProps) => {
+  const [term, setTerm] = useState("");
+
+  const handleSearch = () => {
+    onSearch(term);
+  };
+
   return (
     <InputGroup>
-      <InputLeftElement
-        pointerEvents="none"
-        children={<SearchIcon color="gray.300" />}
-      />
+      {/* ... other elements ... */}
       <Input
         type="text"
         placeholder="Search songs, artists, albums..."
-        variant="filled"
-        bg="gray.100"
-        color="gray.800"
-        _hover={{
-          bg: "gray.200",
-        }}
-        _focus={{
-          bg: "white",
-          borderColor: "green.500",
-        }}
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
+        // ... other props ...
       />
-      <Button
-        ml={2}
-        colorScheme="green"
-        px={8}
-        onClick={() => console.log("Search")}
-      >
+      <Button ml={2} colorScheme="green" px={8} onClick={handleSearch}>
         Search
       </Button>
     </InputGroup>
