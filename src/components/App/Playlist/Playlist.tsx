@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Heading, VStack, Button, Input } from "@chakra-ui/react";
-import Track from "../Track/Track"; // Make sure this path is correct
-import { TrackType } from "../Types"; // Update this path if necessary
+import Track from "../Track/Track";
+import { TrackType } from "../Types";
 
 type PlaylistProps = {
   tracks: TrackType[];

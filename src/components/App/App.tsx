@@ -60,19 +60,21 @@ function App() {
     setPlaylistName(name);
   };
 
-  // Placeholder function to simulate saving a playlist to Spotify
-  const savePlaylist = (name: string, trackUris: string[]) => {
+  // Function to simulate saving a playlist to Spotify with actual URIs from playlistTracks
+  const savePlaylist = () => {
+    const trackUris = playlistTracks.map((track) => track.uri);
     console.log("Saving playlist to Spotify...");
-    console.log(`Playlist Name: ${name}`);
+    console.log(`Playlist Name: ${playlistName}`);
     console.log(`Track URIs: ${trackUris}`);
+
+    // Reset the existing playlist on the web app
+    setPlaylistTracks([]);
+    setPlaylistName("New Playlist");
   };
 
   // Function to handle the actual save action (to be connected later)
   const handleSavePlaylist = () => {
-    savePlaylist(
-      playlistName,
-      playlistTracks.map((track) => track.uri)
-    );
+    savePlaylist();
   };
 
   // Function to handle search (to be replaced with Spotify API call)
@@ -86,7 +88,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>JamMming</h1>
+      <h1>Jammming</h1>
       <SearchBar onSearch={handleSearch} />
       <SearchResults searchResults={searchResults} onAdd={addTrackToPlaylist} />
       <Playlist
