@@ -1,9 +1,11 @@
-import { useState } from "react";
+// App.tsx
+import { useState, useEffect } from "react";
 import "./App.css";
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchResults/SearchResults";
 import Playlist from "./Playlist/Playlist";
 import { TrackType } from "./Types";
+import { checkForAccessToken } from "./Spotify";
 
 function App() {
   // State to store search results
@@ -85,6 +87,11 @@ function App() {
     );
     setSearchResults(filteredResults);
   };
+
+  // Initialize Spotify authentication on app load
+  useEffect(() => {
+    checkForAccessToken();
+  }, []);
 
   return (
     <div className="App">
