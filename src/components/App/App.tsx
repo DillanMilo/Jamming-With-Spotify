@@ -1,6 +1,5 @@
-// App.tsx
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import { Box, Flex } from "@chakra-ui/react";
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchResults/SearchResults";
 import Playlist from "./Playlist/Playlist";
@@ -15,13 +14,8 @@ import {
 } from "./Spotify";
 
 function App() {
-  // State to store search results
   const [searchResults, setSearchResults] = useState<TrackType[]>([]);
-
-  // State to store the user's playlist tracks
   const [playlistTracks, setPlaylistTracks] = useState<TrackType[]>([]);
-
-  // State to store the playlist name
   const [playlistName, setPlaylistName] = useState("New Playlist");
 
   // Function to add a track to the playlist
@@ -95,15 +89,23 @@ function App() {
   return (
     <div className="App">
       <h1>JamMming</h1>
-      <SearchBar onSearch={handleSearch} />
-      <SearchResults searchResults={searchResults} onAdd={addTrackToPlaylist} />
-      <Playlist
-        tracks={playlistTracks}
-        onRemove={removeTrackFromPlaylist}
-        onSave={savePlaylist}
-        playlistName={playlistName}
-        onNameChange={handleNameChange}
-      />
+      <Flex direction="row" justify="space-between" align="start" p={5}>
+        <Box flex="1" marginRight={2}>
+          <SearchResults
+            searchResults={searchResults}
+            onAdd={addTrackToPlaylist}
+          />
+        </Box>
+        <Box flex="1" marginLeft={2}>
+          <Playlist
+            tracks={playlistTracks}
+            onRemove={removeTrackFromPlaylist}
+            onSave={savePlaylist}
+            playlistName={playlistName}
+            onNameChange={handleNameChange}
+          />
+        </Box>
+      </Flex>
     </div>
   );
 }
