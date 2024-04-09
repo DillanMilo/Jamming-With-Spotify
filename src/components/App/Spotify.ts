@@ -1,11 +1,10 @@
-// Spotify.ts
 
-const clientId = '5815332195d34b3fa381be4204872791'; // Replace with your actual client ID
-const redirectUri = 'http://localhost:5173/'; // Replace with your actual redirect URI
+const clientId = '5815332195d34b3fa381be4204872791'; 
+const redirectUri = 'http://localhost:5173/'; 
 const scopes = [
   'playlist-modify-public',
   'playlist-modify-private',
-  // Add other scopes as needed
+  
 ];
 
 // Redirect to Spotify's Authorization Page
