@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Heading, VStack, Button, Input } from "@chakra-ui/react";
 import Track from "../Track/Track";
 import { TrackType } from "../Types";
@@ -18,41 +18,27 @@ const Playlist = ({
   playlistName,
   onNameChange,
 }: PlaylistProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleNameEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onNameChange(event.target.value);
-  };
-
-  const handleNameBlur = () => {
-    setIsEditing(false);
-  };
-
   return (
     <Box border="1px" borderColor="gray.200" borderRadius="md" p={4} m={4}>
-      {isEditing ? (
-        <Input
-          value={playlistName}
-          onChange={handleNameChange}
-          onBlur={handleNameBlur}
-          size="lg"
-          autoFocus
-        />
-      ) : (
-        <Heading as="h3" size="lg" mb={4} onClick={handleNameEdit}>
-          {playlistName}
-        </Heading>
-      )}
+      <Heading as="h3" size="lg" mb={4}>
+        {playlistName}
+      </Heading>
       <VStack spacing={4}>
         {tracks.map((track) => (
-          <Track key={track.id} track={track} onRemove={onRemove} />
+          <Track
+            key={track.id}
+            track={track}
+            onRemove={onRemove}
+            isRemoval={true} // Pass the isRemoval prop as true for tracks in the playlist
+          />
         ))}
       </VStack>
-      <Button colorScheme="green" mt={4} onClick={onSave}>
+      <Button
+        colorScheme="green"
+        mt={4}
+        justifyContent="center"
+        onClick={onSave}
+      >
         Save to Spotify
       </Button>
     </Box>
