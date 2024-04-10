@@ -143,7 +143,9 @@ function App() {
   return (
     <Container centerContent maxW="container.xl">
       <Center flexDirection="column" w="100%" minH="100vh">
-        <Heading as="h1">JamMming</Heading>
+        <Heading marginBottom={150} as="h1">
+          JamMming
+        </Heading>
         <SearchBar
           onSearch={handleSearch}
           onReset={handleReset}
@@ -153,7 +155,7 @@ function App() {
           direction={{ base: "column", md: "row" }}
           justify="center"
           align="start"
-          p={5}
+          p={55}
         >
           {isLargerScreen && (
             <Box w="100%" p={4}>
