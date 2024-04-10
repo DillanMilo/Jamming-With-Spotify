@@ -16,6 +16,7 @@ import {
   checkForAccessToken,
   searchSpotify,
   getAccessToken,
+  getSpotifyAuthorization,
   getUserId,
   createPlaylist,
   addTracksToPlaylist,
@@ -29,6 +30,7 @@ function App() {
   const [playlistTracks, setPlaylistTracks] = useState<TrackType[]>([]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [addedTracks, setAddedTracks] = useState<AddedTracksType>({});
+  const [hasSearched, setHasSearched] = useState(false); // State to track if a search has been performed
 
   // Function to add a track to the playlist
   const addTrackToPlaylist = (trackToAdd: TrackType) => {
@@ -87,10 +89,17 @@ function App() {
 
   // Function to handle search
   const handleSearch = async (term: string) => {
-    const accessToken = getAccessToken();
-    if (accessToken) {
-      const results: TrackType[] = await searchSpotify(term, accessToken);
+    let accessToken = getAccessToken();
+    if (!accessToken) {
+      console.log("Access token is not available, redirecting to login.");
+      getSpotifyAuthorization();
+      return;
+    }
+
+    try {
+      const results = await searchSpotify(term, accessToken);
       setSearchResults(results);
+      setHasSearched(true); // Update the state to indicate that a search has been performed
 
       // Use the AddedTracksType for the reduce function's accumulator
       const newAddedTracks = results.reduce(
@@ -104,9 +113,22 @@ function App() {
       ); // Initialize the accumulator with the correct type
 
       setAddedTracks(newAddedTracks);
-    } else {
-      console.log("Access token is not available.");
+    } catch (error: unknown) {
+      // Change 'error' to 'error: unknown'
+      // Now we check if the error is an instance of Error
+      if (error instanceof Error && error.message.includes("401")) {
+        console.log("Access token might be expired, redirecting to login.");
+        getSpotifyAuthorization();
+      } else {
+        console.error("An unexpected error occurred:", error);
+      }
     }
+  };
+
+  // Function to reset the search
+  const handleReset = () => {
+    setSearchResults([]); // Clear the search results
+    setHasSearched(false); // Set hasSearched back to false
   };
 
   // Initialize Spotify authentication on app load
@@ -121,7 +143,11 @@ function App() {
     <Container centerContent maxW="container.xl">
       <Center flexDirection="column" w="100%" minH="100vh">
         <Heading as="h1">Jammming</Heading>
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar
+          onSearch={handleSearch}
+          onReset={handleReset}
+          hasSearched={hasSearched}
+        />
         <Flex
           direction={{ base: "column", md: "row" }}
           justify="center"
