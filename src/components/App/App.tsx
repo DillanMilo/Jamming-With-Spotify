@@ -1,3 +1,4 @@
+import "./App.css";
 import React, { useState, useEffect } from "react";
 import {
   Box,
@@ -142,7 +143,7 @@ function App() {
   return (
     <Container centerContent maxW="container.xl">
       <Center flexDirection="column" w="100%" minH="100vh">
-        <Heading as="h1">Jammming</Heading>
+        <Heading as="h1">JamMming</Heading>
         <SearchBar
           onSearch={handleSearch}
           onReset={handleReset}
