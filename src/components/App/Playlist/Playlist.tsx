@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Heading, VStack, Button, Input } from "@chakra-ui/react";
 import Track from "../Track/Track";
 import { TrackType } from "../Types";
@@ -6,7 +6,7 @@ import { TrackType } from "../Types";
 type PlaylistProps = {
   tracks: TrackType[];
   onRemove: (track: TrackType) => void;
-  onSave: () => void;
+  onSave: (name: string) => void; // Adjusted to accept the playlist name as a parameter
   playlistName: string;
   onNameChange: (name: string) => void;
 };
@@ -18,27 +18,33 @@ const Playlist = ({
   playlistName,
   onNameChange,
 }: PlaylistProps) => {
+  const [editName, setEditName] = useState(playlistName); // Local state to handle the editable name
+
+  // Update the local state and parent state when the input changes
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEditName(event.target.value);
+    onNameChange(event.target.value);
+  };
+
+  // Call the onSave prop with the current editName when the save button is clicked
+  const handleSave = () => {
+    onSave(editName);
+  };
+
   return (
-    <Box border="1px" borderColor="gray.200" borderRadius="md" p={4} m={4}>
-      <Heading as="h3" size="lg" mb={4}>
-        {playlistName}
-      </Heading>
+    <Box border="1px" borderColor="green.100" borderRadius="md" p={4} m={4}>
+      <Input value={editName} onChange={handleNameChange} size="lg" mb={4} />
       <VStack spacing={4}>
         {tracks.map((track) => (
           <Track
             key={track.id}
             track={track}
             onRemove={onRemove}
-            isRemoval={true} // Pass the isRemoval prop as true for tracks in the playlist
+            isRemoval={true}
           />
         ))}
       </VStack>
-      <Button
-        colorScheme="green"
-        mt={4}
-        justifyContent="center"
-        onClick={onSave}
-      >
+      <Button colorScheme="green" mt={4} onClick={handleSave}>
         Save to Spotify
       </Button>
     </Box>
