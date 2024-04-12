@@ -1,4 +1,5 @@
 import "./App.css";
+import JammmingTitle from "../JamMming";
 import React, { useState, useEffect } from "react";
 import {
   Box,
@@ -143,8 +144,8 @@ function App() {
   return (
     <Container centerContent maxW="container.xl">
       <Center flexDirection="column" w="100%" minH="100vh">
-        <Heading marginBottom={150} as="h1">
-          JamMming
+        <Heading marginBottom={20}>
+          <JammmingTitle />
         </Heading>
         <SearchBar
           onSearch={handleSearch}

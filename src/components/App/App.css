@@ -1,4 +1,6 @@
 /* Base styles */
+
+
 #root {
   display: flex;
   flex-direction: column;
@@ -10,6 +12,17 @@
   padding: 0; /* Remove padding to prevent horizontal scrolling */
   overflow-x: hidden; /* Hide horizontal overflow */
 }
+
+.jammming-title {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 3rem; /* Adjust size as needed */
+      font-weight: bold;
+      color: #1DB954; /* Spotify's brand color */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
+    }
+    
+  
+
 
 .title, .search-bar {
   text-align: center;
