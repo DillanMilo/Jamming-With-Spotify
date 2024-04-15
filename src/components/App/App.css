@@ -28,6 +28,11 @@
   background-position: center;
   position: relative;
   z-index: 1;
+  background-attachment: fixed; /* Keep the background fixed during scroll */
+  width: 100vw; /* Ensure the width is viewport-wide */
+  height: 100vh; /* Ensure the height is viewport-tall */
+  min-height: 100%; /* Minimum height to cover the screen */
+  min-width: 100%;
 }
 
 .background-image::after {
