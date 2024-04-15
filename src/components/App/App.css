@@ -1,5 +1,3 @@
-/* App.css */
-
 /* Base styles for the app */
 #root {
   display: flex;
@@ -26,14 +24,13 @@
   background-image: url('./assets/Images/IMG_5317.jpeg');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed; /* This line will make the background fixed during scroll */
   position: relative;
   z-index: 1;
-  background-attachment: fixed; /* Keep the background fixed during scroll */
-  width: 100vw; /* Ensure the width is viewport-wide */
-  height: 100vh; /* Ensure the height is viewport-tall */
-  min-height: 100%; /* Minimum height to cover the screen */
-  min-width: 100%;
+  width:100vw;
+  
 }
+
 
 .background-image::after {
   content: '';
@@ -48,6 +45,8 @@
 }
 
 /* Responsive adjustments */
+
+
 @media (max-width: 768px) { /* Tablet */
   .background-image {
     background-size: contain; /* Change to 'contain' to see the whole image */
@@ -82,6 +81,22 @@
   }
 }
 
+@media (min-width: 768px) { /* Targeting tablet screens and above */
+  .playlist-container {
+    display: flex; /* Use Flexbox */
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Take full height of the viewport */
+    width: 100%;
+  }
+
+  .search-results-container {
+    display: none; /* Hide search results container when empty */
+  }
+}
+
+
 /* Ensure body takes full width */
 body {
   margin: 0;
@@ -92,3 +107,4 @@ body {
   position: relative;
   z-index: 2;
 }
+
