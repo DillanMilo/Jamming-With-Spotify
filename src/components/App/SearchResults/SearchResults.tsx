@@ -1,5 +1,3 @@
-// SearchResults.tsx
-import React from "react";
 import { SimpleGrid } from "@chakra-ui/react";
 import Track from "../Track/Track";
 import { TrackType } from "../Types";

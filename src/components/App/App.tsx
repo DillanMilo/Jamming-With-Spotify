@@ -117,7 +117,6 @@ function App() {
       setAddedTracks(newAddedTracks);
     } catch (error: unknown) {
       // Change 'error' to 'error: unknown'
-      // Now we check if the error is an instance of Error
       if (error instanceof Error && error.message.includes("401")) {
         console.log("Access token might be expired, redirecting to login.");
         getSpotifyAuthorization();
@@ -130,7 +129,7 @@ function App() {
   // Function to reset the search
   const handleReset = () => {
     setSearchResults([]); // Clear the search results
-    setHasSearched(false); // Set hasSearched back to false
+    setHasSearched(false);
   };
 
   // Initialize Spotify authentication on app load

@@ -1,5 +1,3 @@
-// SearchBar.tsx
-
 import { useState } from "react";
 import { Input, InputGroup, Button, VStack, Link } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";

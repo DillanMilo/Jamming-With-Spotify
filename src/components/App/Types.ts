@@ -1,4 +1,3 @@
-// src/types.ts
 export type TrackType = {
   id: string;
   title: string;
