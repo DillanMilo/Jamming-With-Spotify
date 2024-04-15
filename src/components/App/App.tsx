@@ -1,5 +1,3 @@
-import "./App.css";
-import JammmingTitle from "../JamMming";
 import React, { useState, useEffect } from "react";
 import {
   Box,
@@ -13,6 +11,8 @@ import {
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchResults/SearchResults";
 import Playlist from "./Playlist/Playlist";
+import SavePlaylistAlert from "./Playlist/SavePlaylistAlert";
+import JammmingTitle from "../JamMming";
 import { TrackType } from "./Types";
 import {
   checkForAccessToken,
@@ -23,6 +23,7 @@ import {
   createPlaylist,
   addTracksToPlaylist,
 } from "./Spotify";
+import "./App.css";
 
 // Define the type for the addedTracks state
 type AddedTracksType = { [key: string]: boolean };
@@ -32,7 +33,8 @@ function App() {
   const [playlistTracks, setPlaylistTracks] = useState<TrackType[]>([]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [addedTracks, setAddedTracks] = useState<AddedTracksType>({});
-  const [hasSearched, setHasSearched] = useState(false); // State to track if a search has been performed
+  const [hasSearched, setHasSearched] = useState(false);
+  const [isPlaylistSaved, setIsPlaylistSaved] = useState(false);
 
   // Function to add a track to the playlist
   const addTrackToPlaylist = (trackToAdd: TrackType) => {
@@ -77,6 +79,12 @@ function App() {
         accessToken
       );
       await addTracksToPlaylist(playlistId, trackUris, accessToken);
+      setIsPlaylistSaved(true); // Set the state to true when the playlist is saved successfully
+
+      // Reset the state after a delay
+      setTimeout(() => {
+        setIsPlaylistSaved(false);
+      }, 3000);
 
       // Reset the existing playlist on the web app
       setPlaylistTracks([]);
@@ -196,6 +204,7 @@ function App() {
             </Flex>
           </Center>
         </Container>
+        {isPlaylistSaved && <SavePlaylistAlert />}
       </div>
     </div>
   );
