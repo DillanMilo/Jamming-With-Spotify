@@ -1,6 +1,6 @@
-/* Base styles */
+/* App.css */
 
-
+/* Base styles for the app */
 #root {
   display: flex;
   flex-direction: column;
@@ -14,15 +14,49 @@
 }
 
 .jammming-title {
-      font-family: 'Helvetica Neue', sans-serif;
-      font-size: 3rem; /* Adjust size as needed */
-      font-weight: bold;
-      color: #1DB954; /* Spotify's brand color */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
-    }
-    
-  
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 3rem; /* Adjust size as needed */
+  font-weight: bold;
+  color: #1DB954; /* Spotify's brand color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
+}
 
+/* Background image with overlay */
+.background-image {
+  background-image: url('./assets/Images/IMG_5317.jpeg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+.background-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 128, 0.65); /* Navy blue with 50% opacity */
+  pointer-events: none; /* Allows clicks to pass through the overlay */
+  z-index: -1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) { /* Tablet */
+  .background-image {
+    background-size: contain; /* Change to 'contain' to see the whole image */
+  }
+}
+
+@media (max-width: 480px) { /* Mobile */
+  .background-image {
+    background-size: cover; /* Keep 'cover' for mobile to fill the space */
+    background-position: top center; /* Adjust position if needed */
+  }
+}
+
+/* Add more media queries for larger screens if necessary */
 
 .title, .search-bar {
   text-align: center;
@@ -49,4 +83,7 @@ body {
   width: 100%;
 }
 
-
+.content {
+  position: relative;
+  z-index: 2;
+}

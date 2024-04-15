@@ -39,7 +39,7 @@ const SearchBar = ({ onSearch, onReset, hasSearched }: SearchBarProps) => {
           px={8}
           onClick={handleSearch}
           _hover={{ bg: "green.400" }}
-          opacity="0.6"
+          opacity="0.8"
           _active={{
             opacity: "1",
           }}
