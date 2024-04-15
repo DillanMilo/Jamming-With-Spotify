@@ -1,6 +1,6 @@
 
 const clientId = '5815332195d34b3fa381be4204872791'; 
-const redirectUri = 'http://localhost:5173/'; 
+const redirectUri = 'https://jammming-sable.vercel.app/'; 
 const scopes = [
   'playlist-modify-public',
   'playlist-modify-private',
