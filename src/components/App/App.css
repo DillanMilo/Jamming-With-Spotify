@@ -1,110 +1,111 @@
+/* App.css */
+
 /* Base styles for the app */
 #root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Align content to the start */
-  min-height: 100vh;
-  width: 100%; /* Ensure the root takes full width */
-  margin: 0 auto;
-  padding: 0; /* Remove padding to prevent horizontal scrolling */
-  overflow-x: hidden; /* Hide horizontal overflow */
-}
-
-.jammming-title {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 3rem; /* Adjust size as needed */
-  font-weight: bold;
-  color: #1DB954; /* Spotify's brand color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
-}
-
-/* Background image with overlay */
-.background-image {
-  background-image: url('./assets/Images/IMG_5317.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* This line will make the background fixed during scroll */
-  position: relative;
-  z-index: 1;
-  width:100%;
-  
-}
-
-
-.background-image::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 128, 0.65); /* Navy blue with 50% opacity */
-  pointer-events: none; /* Allows clicks to pass through the overlay */
-  z-index: -1;
-}
-
-/* Responsive adjustments */
-
-
-@media (max-width: 768px) { /* Tablet */
-  .background-image {
-    background-size: contain; /* Change to 'contain' to see the whole image */
-  }
-}
-
-@media (max-width: 480px) { /* Mobile */
-  .background-image {
-    background-size: cover; /* Keep 'cover' for mobile to fill the space */
-    background-position: top center; /* Adjust position if needed */
-  }
-}
-
-/* Add more media queries for larger screens if necessary */
-
-.title, .search-bar {
-  text-align: center;
-  width: 100%;
-}
-
-/* Centering content specifically for mobile screens */
-@media (max-width: 650px) {
-  #root {
-    padding: 0 1rem; 
-  }
-
-  .playlist-container,
-  .search-results-container {
-    width: 100%; /* Full width on mobile */
-    margin: 0 auto; /* Center the container */
-    box-sizing: border-box; 
-  }
-}
-
-@media (min-width: 768px) { /* Targeting tablet screens and above */
-  .playlist-container {
-    display: flex; /* Use Flexbox */
+    display: flex;
     flex-direction: column;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 100vh; /* Take full height of the viewport */
+    align-items: center;
+    justify-content: flex-start; /* Align content to the start */
+    min-height: 100vh;
+    width: 100%; /* Ensure the root takes full width */
+    margin: 0 auto;
+    padding: 0; /* Remove padding to prevent horizontal scrolling */
+    overflow-x: hidden; /* Hide horizontal overflow */
+  }
+  
+  .jammming-title {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 3rem; /* Adjust size as needed */
+    font-weight: bold;
+    color: #1DB954; /* Spotify's brand color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
+  }
+  
+  /* Background image with overlay */
+  .background-image {
+    background-image: url('./assets/Images/IMG_5317.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+    background-attachment: fixed; /* Keep the background fixed during scroll */
+    width: 100vw; /* Ensure the width is viewport-wide */
+    height: 100vh; /* Ensure the height is viewport-tall */
+    min-height: 100%; /* Minimum height to cover the screen */
+    min-width: 100%;
+  }
+  
+  .background-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 128, 0.65); /* Navy blue with 50% opacity */
+    pointer-events: none; /* Allows clicks to pass through the overlay */
+    z-index: -1;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) { /* Tablet */
+    .background-image {
+      background-size: contain; /* Change to 'contain' to see the whole image */
+    }
+  }
+  
+  @media (max-width: 480px) { /* Mobile */
+    .background-image {
+      background-size: cover; /* Keep 'cover' for mobile to fill the space */
+      background-position: top center; /* Adjust position if needed */
+    }
+  }
+  
+  /* Add more media queries for larger screens if necessary */
+  
+  .title, .search-bar {
+    text-align: center;
     width: 100%;
   }
-
-  .search-results-container {
-    display: none; /* Hide search results container when empty */
+  
+  /* Centering content specifically for mobile screens */
+  @media (max-width: 650px) {
+    #root {
+      padding: 0 1rem; 
+    }
+  
+    .playlist-container,
+    .search-results-container {
+      width: 100%; /* Full width on mobile */
+      margin: 0 auto; /* Center the container */
+      box-sizing: border-box; 
+    }
   }
-}
-
-
-/* Ensure body takes full width */
-body {
-  margin: 0;
-  width: 100%;
-}
-
-.content {
-  position: relative;
-  z-index: 2;
-}
-
+  
+  @media (min-width: 768px) { /* Targeting tablet screens and above */
+    .playlist-container {
+      display: flex; /* Use Flexbox */
+      flex-direction: column;
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      height: 100vh; /* Take full height of the viewport */
+      width: 100%;
+    }
+  
+    .search-results-container {
+      display: none; /* Hide search results container when empty */
+    }
+  }
+  
+  
+  /* Ensure body takes full width */
+  body {
+    margin: 0;
+    width: 100%;
+  }
+  
+  .content {
+    position: relative;
+    z-index: 2;
+  }
+  
