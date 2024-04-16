@@ -1,6 +1,6 @@
 
 const clientId = '5815332195d34b3fa381be4204872791'; 
-const redirectUri = 'https://jammmingx.netlify.app/'; 
+const redirectUri = 'http://localhost:5173/'; 
 const scopes = [
   'playlist-modify-public',
   'playlist-modify-private',

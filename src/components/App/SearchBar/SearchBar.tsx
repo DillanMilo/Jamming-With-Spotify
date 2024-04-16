@@ -32,7 +32,6 @@ const SearchBar = ({ onSearch, onReset, hasSearched }: SearchBarProps) => {
           borderWidth="1.5px"
           _hover={{ borderColor: "purple.500" }}
           textColor="grey.500"
-          color="gray.500"
         />
       </InputGroup>
       {!hasSearched ? (

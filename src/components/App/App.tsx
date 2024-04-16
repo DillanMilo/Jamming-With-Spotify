@@ -24,6 +24,7 @@ import {
   addTracksToPlaylist,
 } from "./Spotify";
 import "./App.css";
+import "./SearchBar/SearchBar.css";
 
 // Define the type for the addedTracks state
 type AddedTracksType = { [key: string]: boolean };

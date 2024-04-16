@@ -33,13 +33,7 @@ const Playlist = ({
 
   return (
     <Box border="1px" borderColor="green.100" borderRadius="md" p={4} m={4}>
-      <Input
-        value={editName}
-        onChange={handleNameChange}
-        size="lg"
-        mb={4}
-        color="gray.500"
-      />
+      <Input value={editName} onChange={handleNameChange} size="lg" mb={4} />
       <VStack spacing={4}>
         {tracks.map((track) => (
           <Track

@@ -11,6 +11,17 @@
   overflow-x: hidden; /* Hide horizontal overflow */
 }
 
+/* Ensure body takes full width */
+body {
+  margin: 0;
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
 .jammming-title {
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 3rem; /* Adjust size as needed */
@@ -59,13 +70,6 @@
   }
 }
 
-/* Add more media queries for larger screens if necessary */
-
-.title, .search-bar {
-  text-align: center;
-  width: 100%;
-}
-
 /* Centering content specifically for mobile screens */
 @media (max-width: 650px) {
   #root {
@@ -96,14 +100,5 @@
 }
 
 
-/* Ensure body takes full width */
-body {
-  margin: 0;
-  width: 100%;
-}
 
-.content {
-  position: relative;
-  z-index: 2;
-}
 
