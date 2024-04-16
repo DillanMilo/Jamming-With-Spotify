@@ -27,7 +27,7 @@
   background-attachment: fixed; /* This line will make the background fixed during scroll */
   position: relative;
   z-index: 1;
-  width:100vw;
+  width:100%;
   
 }
 
