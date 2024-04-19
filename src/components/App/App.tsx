@@ -7,6 +7,7 @@ import {
   Heading,
   SimpleGrid,
   useBreakpointValue,
+  ChakraProvider,
 } from "@chakra-ui/react";
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchResults/SearchResults";
@@ -150,64 +151,66 @@ function App() {
   const isLargerScreen = useBreakpointValue({ base: false, md: true });
 
   return (
-    <div className="background-image">
-      <div className="content">
-        <Container centerContent maxW="container.xl">
-          <Center flexDirection="column" w="100%" minH="100vh">
-            <Heading marginBottom={20}>
-              <JammmingTitle />
-            </Heading>
-            <SearchBar
-              onSearch={handleSearch}
-              onReset={handleReset}
-              hasSearched={hasSearched}
-            />
-            <Flex
-              direction={{ base: "column", md: "row" }}
-              justify="center"
-              align="start"
-              p={55}
-            >
-              {isLargerScreen && (
-                <Box w="100%" p={4}>
-                  <Playlist
-                    tracks={playlistTracks}
-                    onRemove={removeTrackFromPlaylist}
-                    onSave={savePlaylist}
-                    playlistName={playlistName}
-                    onNameChange={handleNameChange}
-                  />
-                </Box>
-              )}
-              <Box w={{ base: "100%", md: "50%" }} p={4} ml={{ lg: "10%" }}>
-                {searchResults.length > 0 && (
-                  <Heading as="h2">Search Results</Heading>
+    <ChakraProvider>
+      <div className="background-image">
+        <div className="content">
+          <Container centerContent maxW="container.xl">
+            <Center flexDirection="column" w="100%" minH="100vh">
+              <Heading marginBottom={20}>
+                <JammmingTitle />
+              </Heading>
+              <SearchBar
+                onSearch={handleSearch}
+                onReset={handleReset}
+                hasSearched={hasSearched}
+              />
+              <Flex
+                direction={{ base: "column", md: "row" }}
+                justify="center"
+                align="start"
+                p={55}
+              >
+                {isLargerScreen && (
+                  <Box w="100%" p={4}>
+                    <Playlist
+                      tracks={playlistTracks}
+                      onRemove={removeTrackFromPlaylist}
+                      onSave={savePlaylist}
+                      playlistName={playlistName}
+                      onNameChange={handleNameChange}
+                    />
+                  </Box>
                 )}
-                <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }} spacing="20px">
-                  <SearchResults
-                    searchResults={searchResults}
-                    onAdd={addTrackToPlaylist}
-                    addedTracks={addedTracks}
-                  />
-                </SimpleGrid>
-              </Box>
-              {!isLargerScreen && (
-                <Box w="100%" p={4}>
-                  <Playlist
-                    tracks={playlistTracks}
-                    onRemove={removeTrackFromPlaylist}
-                    onSave={savePlaylist}
-                    playlistName={playlistName}
-                    onNameChange={handleNameChange}
-                  />
+                <Box w={{ base: "100%", md: "50%" }} p={4} ml={{ lg: "10%" }}>
+                  {searchResults.length > 0 && (
+                    <Heading as="h2">Search Results</Heading>
+                  )}
+                  <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }} spacing="20px">
+                    <SearchResults
+                      searchResults={searchResults}
+                      onAdd={addTrackToPlaylist}
+                      addedTracks={addedTracks}
+                    />
+                  </SimpleGrid>
                 </Box>
-              )}
-            </Flex>
-          </Center>
-        </Container>
-        {isPlaylistSaved && <SavePlaylistAlert />}
+                {!isLargerScreen && (
+                  <Box w="100%" p={4}>
+                    <Playlist
+                      tracks={playlistTracks}
+                      onRemove={removeTrackFromPlaylist}
+                      onSave={savePlaylist}
+                      playlistName={playlistName}
+                      onNameChange={handleNameChange}
+                    />
+                  </Box>
+                )}
+              </Flex>
+            </Center>
+          </Container>
+          {isPlaylistSaved && <SavePlaylistAlert />}
+        </div>
       </div>
-    </div>
+    </ChakraProvider>
   );
 }
 
