@@ -28,10 +28,7 @@ const SearchBar = ({ onSearch, onReset, hasSearched }: SearchBarProps) => {
           placeholder="Search songs, artists, albums..."
           value={term}
           onChange={(e) => setTerm(e.target.value)}
-          borderColor="blue.400"
-          borderWidth="1.5px"
-          _hover={{ borderColor: "purple.500" }}
-          textColor="grey.500"
+          className="search-input"
         />
       </InputGroup>
       {!hasSearched ? (

@@ -14,7 +14,7 @@ const SearchResults = ({
   addedTracks,
 }: SearchResultsProps) => {
   return (
-    <SimpleGrid minChildWidth="250px" spacing="20px">
+    <SimpleGrid className="search-results-grid">
       {searchResults.map((track) => (
         <Track
           key={track.id}
