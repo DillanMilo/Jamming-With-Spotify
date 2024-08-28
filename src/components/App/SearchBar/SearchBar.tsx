@@ -1,4 +1,3 @@
-// Remove Chakra UI imports
 import React, { useState } from "react";
 import "../../global.css";
 

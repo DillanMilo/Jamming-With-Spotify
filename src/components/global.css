@@ -1,6 +1,81 @@
-
-.playlist-box {
-    border: 1px solid #c6f6d5; /* Example border color */
+/* Reset and base styles */
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    line-height: 1.6;
+    font-size: 18px;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Base styles for the app */
+  #root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  .content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Typography */
+  .jammming-title {
+    font-family: 'Roboto Flex', sans-serif; /* Using 'Roboto Flex' */
+    font-size: 2.5rem; /* Combining the two sizes */
+    font-weight: bold;
+    color: #9f7aea; /* Default to purple.500 */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6); /* Add shadow for effect */
+  }
+  
+  /* Background styles */
+  .background-image {
+    background-image: url('./assets/Images/IMG_5317.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100%;
+    min-width: 100%;
+  }
+  
+  .background-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 128, 0.65);
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  /* Links */
+  a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  /* Images */
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  
+  /* Components styles */
+  .playlist-box {
+    border: 1px solid #c6f6d5;
     border-radius: 8px;
     padding: 16px;
     margin: 16px;
@@ -35,9 +110,8 @@
     background-color: #38a169; /* Darker green on hover */
   }
   
-  /* SearchBar.tsx */
-  
-.search-input {
+  /* SearchBar styles */
+  .search-input {
     border-color: #63b3ed; /* blue.400 */
     border-width: 1.5px;
     color: #718096 !important; /* Force the text color to be grey */
@@ -47,11 +121,17 @@
     border-color: #9f7aea; /* purple.500 */
   }
   
-  
   input.search-input {
     color: #718096 !important; /* Force the text color to grey */
   }
+
+  .search-bar-container input.search-input {
+    color: #718096 !important;
+  }
+    
   
+  
+  /* Track styles */
   .track-box {
     background-color: #2d3748; /* Equivalent to gray.800 */
     border-radius: 8px;
@@ -107,19 +187,114 @@
     cursor: not-allowed;
   }
   
-  
-  
-  /*searchResults.tsx*/
+  /* SearchResults styles */
   .search-results-grid {
     min-width: 250px;
     gap: 20px;
   }
-
-  .jammming-title {
-    font-size: 2.5rem; /* Equivalent to size="2xl" */
-    color: #9f7aea; /* Equivalent to purple.500 */
-    font-family: 'Roboto Flex', sans-serif;
-    font-weight: bold;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6); /* Add shadow for effect */
+  
+  .search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusts to fit different screen sizes */
+    gap: 20px;
+    margin: 20px 0; /* Optional: Add margin between search results and other content */
   }
+  
+
+  /* Alert styles */
+  .alert {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 8px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+    background-color: #48bb78; /* Green background for success alert */
+    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .alert-icon {
+    margin-right: 8px;
+    font-size: 24px; /* Increase size of checkmark */
+  }
+  
+  .alert-content {
+    flex-grow: 1;
+  }
+  
+  .alert-title {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .show-alert-button {
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #3182ce; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .show-alert-button:hover {
+    background-color: #2b6cb0; /* Darker blue on hover */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .background-image {
+      background-size: contain;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .background-image {
+      background-size: cover;
+      background-position: top center;
+    }
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 650px) {
+    #root {
+      padding: 0 1rem;
+    }
+  
+    .playlist-container,
+    .search-results-container {
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+  }
+  
+  /* Tablet and above */
+  @media (min-width: 768px) {
+    .playlist-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+    }
+  
+    .search-results-container {
+      display: none;
+    }
+  }
+  
   
