@@ -28,11 +28,22 @@ html, body {
   
   /* Typography */
   .jammming-title {
-    font-family: 'Roboto Flex', sans-serif; /* Using 'Roboto Flex' */
-    font-size: 2.5rem; /* Combining the two sizes */
+    display: flex;
+    justify-content: center; /* Centers the title horizontally */
+    align-items: center; /* Centers the title vertically if needed */
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 3rem;
     font-weight: bold;
-    color: #9f7aea; /* Default to purple.500 */
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6); /* Add shadow for effect */
+    color: #9f7aea; /* Spotify purple color for the text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for depth */
+    margin: 0 auto; /* Centers the title in its container */
+    height: 100px; /* Adjust the height if needed */
+    text-align: center; /* Centers the text within the element */
+    width: 100%; /* Ensure the title takes up full width of its container */
+  }
+  
+  .jammming-highlighted-M {
+    color: #1DB954; /* Spotify green color for the highlighted M */
   }
   
   /* Background styles */
