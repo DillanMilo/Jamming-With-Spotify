@@ -1,10 +1,11 @@
-import { Heading } from "@chakra-ui/react";
+import React from "react";
+import "../components/global.css";
 
 const JammmingTitle = () => {
   return (
-    <Heading className="jammming-title">
+    <h1 className="jammming-title">
       Jam<span style={{ color: "#1DB954" }}>M</span>ming
-    </Heading>
+    </h1>
   );
 };
 

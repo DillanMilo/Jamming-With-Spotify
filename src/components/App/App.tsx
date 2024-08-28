@@ -1,14 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Center,
-  Container,
-  Flex,
-  Heading,
-  SimpleGrid,
-  useBreakpointValue,
-  ChakraProvider,
-} from "@chakra-ui/react";
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchResults/SearchResults";
 import Playlist from "./Playlist/Playlist";
@@ -26,6 +16,9 @@ import {
 } from "./Spotify";
 import "./App.css";
 import "./SearchBar/SearchBar.css";
+import "../global.css";
+
+// Rest of your code...
 
 // Define the type for the addedTracks state
 type AddedTracksType = { [key: string]: boolean };
@@ -148,69 +141,92 @@ function App() {
   }, []);
 
   // Determine if the playlist should be at the top based on the screen size
-  const isLargerScreen = useBreakpointValue({ base: false, md: true });
+  const isLargerScreen = window.innerWidth >= 768; // Assuming 768px as the breakpoint for md
 
   return (
-    <ChakraProvider>
-      <div className="background-image">
-        <div className="content">
-          <Container centerContent maxW="container.xl">
-            <Center flexDirection="column" w="100%" minH="100vh">
-              <Heading marginBottom={20}>
-                <JammmingTitle />
-              </Heading>
-              <SearchBar
-                onSearch={handleSearch}
-                onReset={handleReset}
-                hasSearched={hasSearched}
-              />
-              <Flex
-                direction={{ base: "column", md: "row" }}
-                justify="center"
-                align="start"
-                p={55}
+    <div className="background-image">
+      <div className="content">
+        <div
+          className="container center-content"
+          style={{ maxWidth: "container.xl" }}
+        >
+          <div
+            className="center"
+            style={{
+              flexDirection: "column",
+              width: "100%",
+              minHeight: "100vh",
+            }}
+          >
+            <h1 style={{ marginBottom: "20px" }}>
+              <JammmingTitle />
+            </h1>
+            <SearchBar
+              onSearch={handleSearch}
+              onReset={handleReset}
+              hasSearched={hasSearched}
+            />
+            <div
+              className="flex"
+              style={{
+                flexDirection: isLargerScreen ? "row" : "column",
+                justifyContent: "center",
+                alignItems: "start",
+                padding: "55px",
+              }}
+            >
+              {isLargerScreen && (
+                <div className="box" style={{ width: "100%", padding: "16px" }}>
+                  <Playlist
+                    tracks={playlistTracks}
+                    onRemove={removeTrackFromPlaylist}
+                    onSave={savePlaylist}
+                    playlistName={playlistName}
+                    onNameChange={handleNameChange}
+                  />
+                </div>
+              )}
+              <div
+                className="box"
+                style={{
+                  width: isLargerScreen ? "50%" : "100%",
+                  padding: "16px",
+                  marginLeft: isLargerScreen ? "10%" : "0",
+                }}
               >
-                {isLargerScreen && (
-                  <Box w="100%" p={4}>
-                    <Playlist
-                      tracks={playlistTracks}
-                      onRemove={removeTrackFromPlaylist}
-                      onSave={savePlaylist}
-                      playlistName={playlistName}
-                      onNameChange={handleNameChange}
-                    />
-                  </Box>
-                )}
-                <Box w={{ base: "100%", md: "50%" }} p={4} ml={{ lg: "10%" }}>
-                  {searchResults.length > 0 && (
-                    <Heading as="h2">Search Results</Heading>
-                  )}
-                  <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }} spacing="20px">
-                    <SearchResults
-                      searchResults={searchResults}
-                      onAdd={addTrackToPlaylist}
-                      addedTracks={addedTracks}
-                    />
-                  </SimpleGrid>
-                </Box>
-                {!isLargerScreen && (
-                  <Box w="100%" p={4}>
-                    <Playlist
-                      tracks={playlistTracks}
-                      onRemove={removeTrackFromPlaylist}
-                      onSave={savePlaylist}
-                      playlistName={playlistName}
-                      onNameChange={handleNameChange}
-                    />
-                  </Box>
-                )}
-              </Flex>
-            </Center>
-          </Container>
-          {isPlaylistSaved && <SavePlaylistAlert />}
+                {searchResults.length > 0 && <h2>Search Results</h2>}
+                <div
+                  className="simple-grid"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+                    gap: "20px",
+                  }}
+                >
+                  <SearchResults
+                    searchResults={searchResults}
+                    onAdd={addTrackToPlaylist}
+                    addedTracks={addedTracks}
+                  />
+                </div>
+              </div>
+              {!isLargerScreen && (
+                <div className="box" style={{ width: "100%", padding: "16px" }}>
+                  <Playlist
+                    tracks={playlistTracks}
+                    onRemove={removeTrackFromPlaylist}
+                    onSave={savePlaylist}
+                    playlistName={playlistName}
+                    onNameChange={handleNameChange}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
+        {isPlaylistSaved && <SavePlaylistAlert />}
       </div>
-    </ChakraProvider>
+    </div>
   );
 }
 

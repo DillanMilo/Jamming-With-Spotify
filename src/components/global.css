@@ -1,27 +1,84 @@
 
-/* playlist.tsx */
 .playlist-box {
-    border: 1px solid #c6f6d5; /* equivalent to green.100 */
-    border-radius: 8px; /* md */
+    border: 1px solid #c6f6d5; /* Example border color */
+    border-radius: 8px;
     padding: 16px;
     margin: 16px;
   }
+  
+  .playlist-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1.25rem; /* Equivalent to size="lg" */
+    margin-bottom: 16px; /* Equivalent to mb={4} */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .track-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Equivalent to spacing={4} */
+  }
+  
+  .save-button {
+    background-color: #48bb78; /* green */
+    color: white;
+    padding: 8px 16px;
+    margin-top: 16px; /* Equivalent to mt={4} */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .save-button:hover {
+    background-color: #38a169; /* Darker green on hover */
+  }
+  
   /* SearchBar.tsx */
-  .search-input {
+  
+.search-input {
     border-color: #63b3ed; /* blue.400 */
     border-width: 1.5px;
-    color: #718096; /* grey.500 */
+    color: #718096 !important; /* Force the text color to be grey */
   }
   
   .search-input:hover {
     border-color: #9f7aea; /* purple.500 */
   }
-  /* Track.tsx */
+  
+  
+  input.search-input {
+    color: #718096 !important; /* Force the text color to grey */
+  }
+  
   .track-box {
-    background-color: #2d3748; /* gray.800 */
+    background-color: #2d3748; /* Equivalent to gray.800 */
     border-radius: 8px;
     padding: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* md shadow */
+    margin-bottom: 16px; /* Optional: Add spacing between tracks */
+  }
+  
+  .track-title {
+    font-weight: bold;
+    margin-top: 8px;
+  }
+  
+  .track-artist {
+    font-size: 0.875rem; /* small text */
+    color: #a0aec0; /* Example color, adjust as needed */
+  }
+  
+  .track-button-add,
+  .track-button-added,
+  .track-button-remove {
+    margin-top: 16px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem; /* small */
   }
   
   .track-button-add {
@@ -34,18 +91,35 @@
     color: white;
   }
   
+  .track-button-remove {
+    background-color: #e53e3e; /* red */
+    color: white;
+  }
+  
+  .track-button-add:hover,
+  .track-button-added:hover,
+  .track-button-remove:hover {
+    opacity: 0.9;
+  }
+  
+  .track-button-add:disabled {
+    background-color: #a0aec0; /* greyed out */
+    cursor: not-allowed;
+  }
+  
+  
+  
   /*searchResults.tsx*/
   .search-results-grid {
     min-width: 250px;
     gap: 20px;
   }
 
-  /*JamMming.tsx*/
   .jammming-title {
-    font-size: 2.5rem; /* 2xl */
-    color: #9f7aea; /* purple.500 */
+    font-size: 2.5rem; /* Equivalent to size="2xl" */
+    color: #9f7aea; /* Equivalent to purple.500 */
     font-family: 'Roboto Flex', sans-serif;
     font-weight: bold;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6); /* Add shadow for effect */
   }
   
