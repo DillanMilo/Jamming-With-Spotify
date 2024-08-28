@@ -122,24 +122,47 @@ html, body {
   }
   
   /* SearchBar styles */
+  .search-bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the content horizontally */
+    justify-content: center; /* Centers the content vertically */
+    width: 100%; /* Ensure full width of the container */
+    margin-top: 20px; /* Add some space between the title and the search bar */
+  }
+  
   .search-input {
-    border-color: #63b3ed; /* blue.400 */
-    border-width: 1.5px;
-    color: #718096 !important; /* Force the text color to be grey */
+    width: 80%; /* Make the input field larger */
+    max-width: 600px; /* Limit the maximum width on larger screens */
+    padding: 12px 16px; /* Add padding for a larger input box */
+    font-size: 1.5rem; /* Increase font size for better readability */
+    border: 2px solid #63b3ed; /* Blue border */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 16px; /* Space between the input and the button */
+    color: #718096; /* Ensure text is gray */
+    background-color:#c3aaf5;
   }
   
-  .search-input:hover {
-    border-color: #9f7aea; /* purple.500 */
+  .search-button {
+    padding: 12px 24px; /* Larger padding for a bigger button */
+    font-size: 1.5rem; /* Increase button text size */
+    background-color: #48bb78; /* Green button */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
   }
   
-  input.search-input {
-    color: #718096 !important; /* Force the text color to grey */
+  .search-button:hover {
+    background-color: #38a169; /* Darker green on hover */
   }
-
-  .search-bar-container input.search-input {
-    color: #718096 !important;
+  
+  .reset-link {
+    color: #0070f3;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
   }
-    
   
   
   /* Track styles */
