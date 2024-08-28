@@ -135,7 +135,7 @@ html, body {
     width: 80%; /* Make the input field larger */
     max-width: 600px; /* Limit the maximum width on larger screens */
     padding: 12px 16px; /* Add padding for a larger input box */
-    font-size: 1.5rem; /* Increase font size for better readability */
+    font-size: 1.2rem; /* Increase font size for better readability */
     border: 2px solid #63b3ed; /* Blue border */
     border-radius: 8px; /* Rounded corners */
     margin-bottom: 16px; /* Space between the input and the button */
@@ -145,17 +145,19 @@ html, body {
   
   .search-button {
     padding: 12px 24px; /* Larger padding for a bigger button */
-    font-size: 1.5rem; /* Increase button text size */
-    background-color: #48bb78; /* Green button */
-    color: white; /* White text */
+    font-size: 1rem; /* Increase button text size */
+    background-color: rgba(92, 198, 129, 0.8); /* Spotify green with 80% opacity */
+    color: rgb(246, 242, 242); /* White text */
     border: none; /* Remove default border */
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 8px; /* More rounded corners */
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
   }
   
   .search-button:hover {
-    background-color: #38a169; /* Darker green on hover */
+    background-color: rgb(120, 214, 153); /* Fully opaque Spotify green on hover */
   }
+  
   
   .reset-link {
     color: #0070f3;

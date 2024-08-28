@@ -33,9 +33,11 @@ const SearchBar = ({
         />
       </div>
       {!hasSearched ? (
-        <button onClick={handleSearch}>Search</button>
+        <button className="search-button" onClick={handleSearch}>
+          Search
+        </button>
       ) : (
-        <a href="#" onClick={handleReset}>
+        <a href="#" className="reset-link" onClick={handleReset}>
           Back
         </a>
       )}
