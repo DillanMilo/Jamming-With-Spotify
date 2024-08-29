@@ -91,9 +91,15 @@ html, body {
     padding: 8px;
     margin: 8px;
     width: 250px;
-    height: 120px; /* Set a specific height */
     box-sizing: border-box;
+    max-height: 250px;
+    height: 120px;
     overflow: auto; /* Add a scrollbar if the content is too long */
+}
+
+.box {
+  overflow: auto;
+  max-height: 120px;
 }
   .playlist-input {
     
@@ -325,7 +331,7 @@ html, body {
       width: 100%;
       margin: 0 auto;
       box-sizing: border-box;
-      overflow: auto; /* Add a scrollbar if the content is too long */
+    
     }
   }
   
@@ -336,6 +342,7 @@ html, body {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      max-height: 100vh;
       height: 100vh;
       width: 100%;
       overflow: auto; /* Add a scrollbar if the content is too long */

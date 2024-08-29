@@ -18,8 +18,6 @@ import "./App.css";
 import "./SearchBar/SearchBar.css";
 import "../global.css";
 
-// Rest of your code...
-
 // Define the type for the addedTracks state
 type AddedTracksType = { [key: string]: boolean };
 
