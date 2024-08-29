@@ -192,7 +192,6 @@ function App() {
                   marginLeft: isLargerScreen ? "10%" : "0",
                 }}
               >
-                {searchResults.length > 0 && <h2>Search Results</h2>}
                 <div
                   className="simple-grid"
                   style={{
