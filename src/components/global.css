@@ -91,9 +91,10 @@ html, body {
     padding: 8px;
     margin: 8px;
     width: 250px;
+    height: 120px; /* Set a specific height */
     box-sizing: border-box;
-  }
-  
+    overflow: auto; /* Add a scrollbar if the content is too long */
+}
   .playlist-input {
     
     width: 100%;
