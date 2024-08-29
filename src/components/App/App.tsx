@@ -143,7 +143,6 @@ function App() {
               minHeight: "100vh",
             }}
           >
-            {/* Use JammmingTitle directly without wrapping it in another h1 */}
             <JammmingTitle />
             <SearchBar
               onSearch={handleSearch}
@@ -160,7 +159,10 @@ function App() {
               }}
             >
               {isLargerScreen && (
-                <div className="box" style={{ width: "100%", padding: "16px" }}>
+                <div
+                  className="playlist-container"
+                  style={{ width: "100%", padding: "16px" }}
+                >
                   <Playlist
                     tracks={playlistTracks}
                     onRemove={removeTrackFromPlaylist}
@@ -194,7 +196,10 @@ function App() {
                 </div>
               </div>
               {!isLargerScreen && (
-                <div className="box" style={{ width: "100%", padding: "16px" }}>
+                <div
+                  className="playlist-container"
+                  style={{ width: "100%", padding: "16px" }}
+                >
                   <Playlist
                     tracks={playlistTracks}
                     onRemove={removeTrackFromPlaylist}
