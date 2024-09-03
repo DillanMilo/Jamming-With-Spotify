@@ -29,6 +29,7 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [isPlaylistSaved, setIsPlaylistSaved] = useState(false);
 
+  // Function to add a track to the playlist
   const addTrackToPlaylist = (trackToAdd: TrackType) => {
     if (!addedTracks[trackToAdd.id]) {
       setPlaylistTracks([...playlistTracks, trackToAdd]);
@@ -36,6 +37,7 @@ function App() {
     }
   };
 
+  // Function to remove a track from the playlist
   const removeTrackFromPlaylist = (trackToRemove: TrackType) => {
     setPlaylistTracks(
       playlistTracks.filter((track) => track.id !== trackToRemove.id)
@@ -43,10 +45,12 @@ function App() {
     setAddedTracks({ ...addedTracks, [trackToRemove.id]: false });
   };
 
+  // Function to handle the change of the playlist name
   const handleNameChange = (name: string) => {
     setPlaylistName(name);
   };
 
+  // Function to save the playlist to Spotify
   const savePlaylist = async () => {
     const accessToken = getAccessToken();
     if (!accessToken) {
@@ -68,14 +72,17 @@ function App() {
         accessToken
       );
       await addTracksToPlaylist(playlistId, trackUris, accessToken);
-      setIsPlaylistSaved(true);
+      setIsPlaylistSaved(true); // Set the state to true when the playlist is saved successfully
 
+      // Reset the state after a delay
       setTimeout(() => {
         setIsPlaylistSaved(false);
       }, 3000);
 
+      // Reset the existing playlist on the web app
       setPlaylistTracks([]);
       setPlaylistName("New Playlist");
+      // Reset the addedTracks state
       setAddedTracks({});
       console.log("Playlist saved to Spotify!");
     } catch (error) {
@@ -83,6 +90,7 @@ function App() {
     }
   };
 
+  // Function to handle search
   const handleSearch = async (term: string) => {
     let accessToken = getAccessToken();
     if (!accessToken) {
@@ -94,7 +102,7 @@ function App() {
     try {
       const results = await searchSpotify(term, accessToken);
       setSearchResults(results);
-      setHasSearched(true);
+      setHasSearched(true); // Update the state to indicate that a search has been performed
 
       const newAddedTracks = results.reduce(
         (acc: AddedTracksType, track: TrackType) => {
@@ -104,7 +112,7 @@ function App() {
           return acc;
         },
         {} as AddedTracksType
-      );
+      ); // Initialize the accumulator with the correct type
 
       setAddedTracks(newAddedTracks);
     } catch (error: unknown) {
@@ -117,15 +125,18 @@ function App() {
     }
   };
 
+  // Function to reset the search
   const handleReset = () => {
-    setSearchResults([]);
+    setSearchResults([]); // Clear the search results
     setHasSearched(false);
   };
 
+  // Initialize Spotify authentication on app load
   useEffect(() => {
     checkForAccessToken();
   }, []);
 
+  // Determine if the playlist should be at the top based on the screen size
   const isLargerScreen = window.innerWidth >= 768;
 
   return (
@@ -173,7 +184,7 @@ function App() {
                 </div>
               )}
               <div
-                className="box"
+                className="search-results-container"
                 style={{
                   width: isLargerScreen ? "50%" : "100%",
                   padding: "16px",
