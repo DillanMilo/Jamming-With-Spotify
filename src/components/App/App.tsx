@@ -130,6 +130,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <div className="background-overlay"></div>
       {/* Add background image */}
       <img
         src={backgroundImage}
