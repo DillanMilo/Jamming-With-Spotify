@@ -1,6 +1,4 @@
 import React from "react";
-import { Box, Button, Text } from "@chakra-ui/react";
-import { AddIcon, CheckIcon, MinusIcon } from "@chakra-ui/icons";
 import { TrackType } from "../Types";
 
 type TrackProps = {
@@ -13,18 +11,35 @@ type TrackProps = {
 
 const Track = ({ track, onAdd, onRemove, isAdded, isRemoval }: TrackProps) => {
   return (
-    <Box className="track-box">
-      <Button
-        mt="4"
-        leftIcon={isAdded ? <CheckIcon /> : <AddIcon />}
-        className={isAdded ? "track-button-added" : "track-button-add"}
-        size="sm"
-        onClick={() => onAdd && onAdd(track)}
-        isDisabled={isAdded}
-      >
-        {isAdded ? "Added" : "Add to Playlist"}
-      </Button>
-    </Box>
+    <div className="track-box">
+      {/* Album Artwork */}
+      {track.albumImageUrl && (
+        <img
+          src={track.albumImageUrl}
+          alt={`${track.title} album cover`}
+          className="track-album-image"
+        />
+      )}
+
+      <p className="track-title">{track.title}</p>
+      <p className="track-artist">{track.artist}</p>
+      {!isRemoval ? (
+        <button
+          className={isAdded ? "track-button-added" : "track-button-add"}
+          onClick={() => onAdd && onAdd(track)}
+          disabled={isAdded}
+        >
+          {isAdded ? "✔ Added" : "+ Add to Playlist"}
+        </button>
+      ) : (
+        <button
+          className="track-button-remove"
+          onClick={() => onRemove && onRemove(track)}
+        >
+          - Remove from Playlist
+        </button>
+      )}
+    </div>
   );
 };
 

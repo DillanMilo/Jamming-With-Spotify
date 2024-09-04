@@ -1,39 +1,35 @@
-import React from "react";
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-  CloseButton,
-  useDisclosure,
-} from "@chakra-ui/react";
+import React, { useState } from "react";
+import "../../global.css"; // Make sure global.css is correctly imported
 
 const SavePlaylistAlert: React.FC = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true });
+  const [isOpen, setIsOpen] = useState(true);
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
+  const onOpen = () => {
+    setIsOpen(true);
+  };
 
   return (
     <>
       {isOpen && (
-        <Alert
-          status="success"
-          position="fixed"
-          bottom="20px"
-          width="auto"
-          right="20px"
-        >
-          <AlertIcon />
-          <AlertTitle mr={2}>Success 🙌</AlertTitle>
-          <AlertDescription>Your Playlist has been saved!</AlertDescription>
-          <CloseButton
-            position="absolute"
-            right="8px"
-            top="8px"
-            onClick={onClose}
-          />
-        </Alert>
+        <div className="alert success-alert">
+          <div className="alert-icon">✔</div>
+          <div className="alert-content">
+            <strong className="alert-title">Success 🙌</strong>
+            <span>Your Playlist has been saved!</span>
+          </div>
+          <button className="close-button" onClick={onClose}>
+            ×
+          </button>
+        </div>
       )}
       {/* Button to trigger the alert */}
-      <button onClick={onOpen}>Show Alert</button>
+      <button className="show-alert-button" onClick={onOpen}>
+        Show Alert
+      </button>
     </>
   );
 };

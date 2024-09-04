@@ -1,14 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Center,
-  Container,
-  Flex,
-  Heading,
-  SimpleGrid,
-  useBreakpointValue,
-  ChakraProvider,
-} from "@chakra-ui/react";
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchResults/SearchResults";
 import Playlist from "./Playlist/Playlist";
@@ -26,8 +16,9 @@ import {
 } from "./Spotify";
 import "./App.css";
 import "./SearchBar/SearchBar.css";
+import "../global.css";
+import backgroundImage from "./assets/Images/IMG_5317.jpeg"; // Import the image
 
-// Define the type for the addedTracks state
 type AddedTracksType = { [key: string]: boolean };
 
 function App() {
@@ -38,7 +29,6 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [isPlaylistSaved, setIsPlaylistSaved] = useState(false);
 
-  // Function to add a track to the playlist
   const addTrackToPlaylist = (trackToAdd: TrackType) => {
     if (!addedTracks[trackToAdd.id]) {
       setPlaylistTracks([...playlistTracks, trackToAdd]);
@@ -46,7 +36,6 @@ function App() {
     }
   };
 
-  // Function to remove a track from the playlist
   const removeTrackFromPlaylist = (trackToRemove: TrackType) => {
     setPlaylistTracks(
       playlistTracks.filter((track) => track.id !== trackToRemove.id)
@@ -54,12 +43,10 @@ function App() {
     setAddedTracks({ ...addedTracks, [trackToRemove.id]: false });
   };
 
-  // Function to handle the change of the playlist name
   const handleNameChange = (name: string) => {
     setPlaylistName(name);
   };
 
-  // Function to save the playlist to Spotify
   const savePlaylist = async () => {
     const accessToken = getAccessToken();
     if (!accessToken) {
@@ -81,17 +68,14 @@ function App() {
         accessToken
       );
       await addTracksToPlaylist(playlistId, trackUris, accessToken);
-      setIsPlaylistSaved(true); // Set the state to true when the playlist is saved successfully
+      setIsPlaylistSaved(true);
 
-      // Reset the state after a delay
       setTimeout(() => {
         setIsPlaylistSaved(false);
       }, 3000);
 
-      // Reset the existing playlist on the web app
       setPlaylistTracks([]);
       setPlaylistName("New Playlist");
-      // Reset the addedTracks state
       setAddedTracks({});
       console.log("Playlist saved to Spotify!");
     } catch (error) {
@@ -99,7 +83,6 @@ function App() {
     }
   };
 
-  // Function to handle search
   const handleSearch = async (term: string) => {
     let accessToken = getAccessToken();
     if (!accessToken) {
@@ -111,9 +94,8 @@ function App() {
     try {
       const results = await searchSpotify(term, accessToken);
       setSearchResults(results);
-      setHasSearched(true); // Update the state to indicate that a search has been performed
+      setHasSearched(true);
 
-      // Use the AddedTracksType for the reduce function's accumulator
       const newAddedTracks = results.reduce(
         (acc: AddedTracksType, track: TrackType) => {
           acc[track.id] = !!playlistTracks.find(
@@ -122,11 +104,10 @@ function App() {
           return acc;
         },
         {} as AddedTracksType
-      ); // Initialize the accumulator with the correct type
+      );
 
       setAddedTracks(newAddedTracks);
     } catch (error: unknown) {
-      // Change 'error' to 'error: unknown'
       if (error instanceof Error && error.message.includes("401")) {
         console.log("Access token might be expired, redirecting to login.");
         getSpotifyAuthorization();
@@ -136,81 +117,119 @@ function App() {
     }
   };
 
-  // Function to reset the search
   const handleReset = () => {
-    setSearchResults([]); // Clear the search results
-    setHasSearched(false);
+    setSearchResults([]);
+    setHasSearched(false); // Reset this to show the playlist again
   };
 
-  // Initialize Spotify authentication on app load
   useEffect(() => {
     checkForAccessToken();
   }, []);
 
-  // Determine if the playlist should be at the top based on the screen size
-  const isLargerScreen = useBreakpointValue({ base: false, md: true });
+  const isLargerScreen = window.innerWidth >= 768;
 
   return (
-    <ChakraProvider>
-      <div className="background-image">
-        <div className="content">
-          <Container centerContent maxW="container.xl">
-            <Center flexDirection="column" w="100%" minH="100vh">
-              <Heading marginBottom={20}>
-                <JammmingTitle />
-              </Heading>
-              <SearchBar
-                onSearch={handleSearch}
-                onReset={handleReset}
-                hasSearched={hasSearched}
-              />
-              <Flex
-                direction={{ base: "column", md: "row" }}
-                justify="center"
-                align="start"
-                p={55}
-              >
-                {isLargerScreen && (
-                  <Box w="100%" p={4}>
-                    <Playlist
-                      tracks={playlistTracks}
-                      onRemove={removeTrackFromPlaylist}
-                      onSave={savePlaylist}
-                      playlistName={playlistName}
-                      onNameChange={handleNameChange}
-                    />
-                  </Box>
-                )}
-                <Box w={{ base: "100%", md: "50%" }} p={4} ml={{ lg: "10%" }}>
-                  {searchResults.length > 0 && (
-                    <Heading as="h2">Search Results</Heading>
+    <div className="app-container">
+      <div className="background-overlay"></div>
+      {/* Add background image */}
+      <img
+        src={backgroundImage}
+        alt="Background"
+        className="background-image"
+      />
+
+      <div className="content">
+        <div
+          className="container center-content"
+          style={{ maxWidth: "container.xl" }}
+        >
+          <div
+            className="center"
+            style={{
+              flexDirection: "column",
+              width: "100%",
+              minHeight: "100vh",
+            }}
+          >
+            <JammmingTitle />
+            <SearchBar
+              onSearch={handleSearch}
+              onReset={handleReset}
+              hasSearched={hasSearched}
+            />
+
+            <div
+              className="flex"
+              style={{
+                flexDirection: isLargerScreen ? "row" : "column",
+                justifyContent: "center",
+                alignItems: "start",
+                padding: "55px",
+              }}
+            >
+              {!hasSearched && (
+                <div
+                  className="playlist-container"
+                  style={{
+                    width: "100%",
+                    padding: "16px",
+                    marginBottom: isLargerScreen ? "0" : "20px",
+                  }}
+                >
+                  <Playlist
+                    tracks={playlistTracks}
+                    onRemove={removeTrackFromPlaylist}
+                    onSave={savePlaylist}
+                    playlistName={playlistName}
+                    onNameChange={handleNameChange}
+                  />
+                </div>
+              )}
+
+              {hasSearched && (
+                <div
+                  className="search-results-container"
+                  style={{
+                    width: isLargerScreen ? "50%" : "100%",
+                    padding: "16px",
+                    marginLeft: isLargerScreen ? "10%" : "0",
+                  }}
+                >
+                  {/* Adjusted the width of the playlist container */}
+                  {isLargerScreen && (
+                    <div
+                      className="playlist-container"
+                      style={{
+                        width: "95%", // Increased width for the playlist container
+                        marginRight: "100px",
+                        padding: "16px",
+                        maxHeight: "500px",
+                        overflowY: "auto",
+                      }}
+                    >
+                      <Playlist
+                        tracks={playlistTracks}
+                        onRemove={removeTrackFromPlaylist}
+                        onSave={savePlaylist}
+                        playlistName={playlistName}
+                        onNameChange={handleNameChange}
+                      />
+                    </div>
                   )}
-                  <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }} spacing="20px">
-                    <SearchResults
-                      searchResults={searchResults}
-                      onAdd={addTrackToPlaylist}
-                      addedTracks={addedTracks}
-                    />
-                  </SimpleGrid>
-                </Box>
-                {!isLargerScreen && (
-                  <Box w="100%" p={4}>
-                    <Playlist
-                      tracks={playlistTracks}
-                      onRemove={removeTrackFromPlaylist}
-                      onSave={savePlaylist}
-                      playlistName={playlistName}
-                      onNameChange={handleNameChange}
-                    />
-                  </Box>
-                )}
-              </Flex>
-            </Center>
-          </Container>
-          {isPlaylistSaved && <SavePlaylistAlert />}
+
+                  <SearchResults
+                    searchResults={searchResults}
+                    onAdd={addTrackToPlaylist}
+                    addedTracks={addedTracks}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
+        {isPlaylistSaved && <SavePlaylistAlert />}
       </div>
-    </ChakraProvider>
+    </div>
   );
 }
 

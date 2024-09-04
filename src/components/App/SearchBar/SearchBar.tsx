@@ -1,14 +1,15 @@
-import { useState } from "react";
-import { Input, InputGroup, Button, VStack, Link } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import React, { useState } from "react";
+import "../../global.css";
 
-type SearchBarProps = {
-  onSearch: (term: string) => void;
-  onReset: () => void; // Add a new prop for resetting the search
-  hasSearched: boolean; // Add a new prop to indicate if a search has been performed
-};
-
-const SearchBar = ({ onSearch, onReset, hasSearched }: SearchBarProps) => {
+const SearchBar = ({
+  onSearch,
+  onReset,
+  hasSearched,
+}: {
+  onSearch: Function;
+  onReset: Function;
+  hasSearched: boolean;
+}) => {
   const [term, setTerm] = useState("");
 
   const handleSearch = () => {
@@ -21,45 +22,26 @@ const SearchBar = ({ onSearch, onReset, hasSearched }: SearchBarProps) => {
   };
 
   return (
-    <VStack spacing={4}>
-      <InputGroup>
-        <Input
+    <div className="search-bar-container">
+      <div className="input-group">
+        <input
           type="text"
           placeholder="Search songs, artists, albums..."
           value={term}
           onChange={(e) => setTerm(e.target.value)}
           className="search-input"
         />
-      </InputGroup>
+      </div>
       {!hasSearched ? (
-        <Button
-          ml={2}
-          colorScheme="green"
-          px={8}
-          onClick={handleSearch}
-          _hover={{ bg: "green.400" }}
-          opacity="0.8"
-          _active={{
-            opacity: "1",
-          }}
-        >
-          <SearchIcon />
+        <button className="search-button" onClick={handleSearch}>
           Search
-        </Button>
+        </button>
       ) : (
-        <Link
-          color="blue.500"
-          textDecoration="underline"
-          onClick={handleReset}
-          _hover={{
-            textDecoration: "none",
-            color: "blue.600",
-          }}
-        >
+        <a href="#" className="reset-link" onClick={handleReset}>
           Back
-        </Link>
+        </a>
       )}
-    </VStack>
+    </div>
   );
 };
 

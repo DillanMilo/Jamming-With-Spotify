@@ -1,6 +1,7 @@
+const clientId = '5815332195d34b3fa381be4204872791';
 
-const clientId = '5815332195d34b3fa381be4204872791'; 
-const redirectUri = 'https://jammming-fhljs1uc9-dillans-projects-f662840b.vercel.app'; 
+// Use environment variables to switch between local and production URIs
+const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI || 'http://localhost:5173/';
 const scopes = [
   'playlist-modify-public',
   'playlist-modify-private',
@@ -81,12 +82,12 @@ export const searchSpotify = async (searchTerm: string, accessToken: string) => 
     const jsonResponse = await response.json();
     // Convert the JSON response to an array of track objects
     const tracks = jsonResponse.tracks.items.map((track: any) => ({
-        id: track.id,
-        title: track.name,
-        artist: track.artists[0].name,
-        album: track.album.name,
-        albumImageUrl: track.album.images[0].url,
-        uri: track.uri
+      id: track.id,
+      title: track.name,
+      artist: track.artists[0].name,
+      album: track.album.name,
+      albumImageUrl: track.album.images[0].url,
+      uri: track.uri
     }));
     return tracks;
   } catch (error) {
@@ -161,6 +162,3 @@ export const addTracksToPlaylist = async (playlistId: string, trackUris: string[
     console.error('Error adding tracks to playlist:', error);
   }
 };
-
-
-

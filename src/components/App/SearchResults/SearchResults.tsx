@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import React from "react";
 import Track from "../Track/Track";
 import { TrackType } from "../Types";
 
@@ -14,7 +14,7 @@ const SearchResults = ({
   addedTracks,
 }: SearchResultsProps) => {
   return (
-    <SimpleGrid className="search-results-grid">
+    <div className="search-results-grid">
       {searchResults.map((track) => (
         <Track
           key={track.id}
@@ -23,7 +23,7 @@ const SearchResults = ({
           isAdded={addedTracks[track.id]} // Pass the isAdded prop to Track
         />
       ))}
-    </SimpleGrid>
+    </div>
   );
 };
 
