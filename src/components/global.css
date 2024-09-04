@@ -156,6 +156,12 @@ html, body {
     color: #3a3d41; /* Ensure text is gray */
     background-color: rgba(195, 170, 245, 0.8);
   }
+
+  /* Change placeholder text color */
+.search-input::placeholder {
+  color: #3f4245; /* Darker color for placeholder text */
+  opacity: 1; /* Ensure it's fully visible */
+}
   
   .search-button {
     padding: 12px 24px; /* Larger padding for a bigger button */
