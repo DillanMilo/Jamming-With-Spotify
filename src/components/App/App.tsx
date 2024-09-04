@@ -18,7 +18,6 @@ import "./App.css";
 import "./SearchBar/SearchBar.css";
 import "../global.css";
 
-// Define the type for the addedTracks state
 type AddedTracksType = { [key: string]: boolean };
 
 function App() {
@@ -119,7 +118,7 @@ function App() {
 
   const handleReset = () => {
     setSearchResults([]);
-    setHasSearched(false);
+    setHasSearched(false); // Reset this to show the playlist again
   };
 
   useEffect(() => {
@@ -152,48 +151,65 @@ function App() {
             <div
               className="flex"
               style={{
-                justifyContent:
-                  hasSearched && isLargerScreen ? "space-between" : "center",
+                flexDirection: isLargerScreen ? "row" : "column",
+                justifyContent: "center",
                 alignItems: "start",
                 padding: "55px",
               }}
             >
-              <div
-                className="playlist-container"
-                style={{
-                  width: hasSearched ? "40%" : "100%",
-                  padding: "16px",
-                  textAlign: hasSearched ? "left" : "center",
-                }}
-              >
-                <Playlist
-                  tracks={playlistTracks}
-                  onRemove={removeTrackFromPlaylist}
-                  onSave={savePlaylist}
-                  playlistName={playlistName}
-                  onNameChange={handleNameChange}
-                />
-              </div>
+              {!hasSearched && (
+                <div
+                  className="playlist-container"
+                  style={{
+                    width: "100%",
+                    padding: "16px",
+                    marginBottom: isLargerScreen ? "0" : "20px",
+                  }}
+                >
+                  <Playlist
+                    tracks={playlistTracks}
+                    onRemove={removeTrackFromPlaylist}
+                    onSave={savePlaylist}
+                    playlistName={playlistName}
+                    onNameChange={handleNameChange}
+                  />
+                </div>
+              )}
+
               {hasSearched && (
                 <div
                   className="search-results-container"
-                  style={{ width: "50%", padding: "16px", marginLeft: "10%" }}
+                  style={{
+                    width: isLargerScreen ? "50%" : "100%",
+                    padding: "16px",
+                    marginLeft: isLargerScreen ? "10%" : "0",
+                  }}
                 >
-                  <div
-                    className="simple-grid"
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns:
-                        "repeat(auto-fit, minmax(150px, 1fr))",
-                      gap: "20px",
-                    }}
-                  >
-                    <SearchResults
-                      searchResults={searchResults}
-                      onAdd={addTrackToPlaylist}
-                      addedTracks={addedTracks}
-                    />
-                  </div>
+                  {isLargerScreen && (
+                    <div
+                      className="playlist-container"
+                      style={{
+                        width: "45%",
+                        marginRight: "10px",
+                        padding: "16px",
+                        maxHeight: "500px",
+                        overflowY: "auto",
+                      }}
+                    >
+                      <Playlist
+                        tracks={playlistTracks}
+                        onRemove={removeTrackFromPlaylist}
+                        onSave={savePlaylist}
+                        playlistName={playlistName}
+                        onNameChange={handleNameChange}
+                      />
+                    </div>
+                  )}
+                  <SearchResults
+                    searchResults={searchResults}
+                    onAdd={addTrackToPlaylist}
+                    addedTracks={addedTracks}
+                  />
                 </div>
               )}
             </div>
