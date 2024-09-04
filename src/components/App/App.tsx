@@ -17,6 +17,7 @@ import {
 import "./App.css";
 import "./SearchBar/SearchBar.css";
 import "../global.css";
+import backgroundImage from "./assets/Images/IMG_5317.jpeg"; // Import the image
 
 type AddedTracksType = { [key: string]: boolean };
 
@@ -128,7 +129,14 @@ function App() {
   const isLargerScreen = window.innerWidth >= 768;
 
   return (
-    <div className="background-image">
+    <div className="app-container">
+      {/* Add background image */}
+      <img
+        src={backgroundImage}
+        alt="Background"
+        className="background-image"
+      />
+
       <div className="content">
         <div
           className="container center-content"
@@ -185,26 +193,6 @@ function App() {
                     marginLeft: isLargerScreen ? "10%" : "0",
                   }}
                 >
-                  {isLargerScreen && (
-                    <div
-                      className="playlist-container"
-                      style={{
-                        width: "45%",
-                        marginRight: "10px",
-                        padding: "16px",
-                        maxHeight: "500px",
-                        overflowY: "auto",
-                      }}
-                    >
-                      <Playlist
-                        tracks={playlistTracks}
-                        onRemove={removeTrackFromPlaylist}
-                        onSave={savePlaylist}
-                        playlistName={playlistName}
-                        onNameChange={handleNameChange}
-                      />
-                    </div>
-                  )}
                   <SearchResults
                     searchResults={searchResults}
                     onAdd={addTrackToPlaylist}

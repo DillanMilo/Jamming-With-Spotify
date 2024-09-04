@@ -8,7 +8,17 @@ html, body {
     width: 100%;
     overflow-x: hidden;
   }
-  
+ /* Background Image Styling */
+ .background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Behind everything */
+}
+
   /* Base styles for the app */
   #root {
     display: flex;
@@ -44,32 +54,6 @@ html, body {
   
   .jammming-highlighted-M {
     color: #1DB954; /* Spotify green color for the highlighted M */
-  }
-  
-  /* Background styles */
-  .background-image {
-    background-image: url('./assets/Images/IMG_5317.jpeg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    z-index: 1;
-    background-attachment: fixed;
-    width: 100vw;
-    height: 100vh;
-    min-height: 100%;
-    min-width: 100%;
-  }
-  
-  .background-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 128, 0.65);
-    pointer-events: none;
-    z-index: -1;
   }
   
   /* Links */
