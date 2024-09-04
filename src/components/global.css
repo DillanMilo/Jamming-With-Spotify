@@ -106,7 +106,7 @@ html, body {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: rgb(170, 207, 170);
+  background-color: rgba(170, 207, 170, 0.8);
   text-align: center;
 }
 
