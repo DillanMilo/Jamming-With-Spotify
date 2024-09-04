@@ -1,7 +1,8 @@
 const clientId = '5815332195d34b3fa381be4204872791';
 
 // Use environment variables to switch between local and production URIs
-const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI || 'http://localhost:5173/';
+const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI || 'https://jamming-with-spotify-eight.vercel.app/';
+
 const scopes = [
   'playlist-modify-public',
   'playlist-modify-private',
