@@ -12,20 +12,17 @@ type TrackProps = {
 const Track = ({ track, onAdd, onRemove, isAdded, isRemoval }: TrackProps) => {
   return (
     <div className="track-box">
-      {/* Add album artwork */}
+      {/* Album Artwork */}
       {track.albumImageUrl && (
         <img
           src={track.albumImageUrl}
-          alt={track.title}
+          alt={`${track.title} album cover`}
           className="track-album-image"
-          style={{ width: "100px", height: "100px", borderRadius: "8px" }}
         />
       )}
 
       <p className="track-title">{track.title}</p>
       <p className="track-artist">{track.artist}</p>
-
-      {/* Add / Remove buttons */}
       {!isRemoval ? (
         <button
           className={isAdded ? "track-button-added" : "track-button-add"}

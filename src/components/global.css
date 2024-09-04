@@ -17,6 +17,7 @@ html, body {
   height: 100%;
   object-fit: cover;
   z-index: -1; /* Behind everything */
+
 }
 
 
@@ -170,7 +171,7 @@ html, body {
   
   /* Track styles */
   .track-box {
-    background-color: #97df9e; /* Equivalent to gray.800 */
+    background-color: rgba(151, 223, 158, 0.5); /* 50% opacity */
     border-radius: 8px;
     padding: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* md shadow */
@@ -184,7 +185,7 @@ html, body {
   
   .track-artist {
     font-size: 0.875rem; /* small text */
-    color: #a0aec0; /* Example color, adjust as needed */
+    color: #3c3e3f; /* Example color, adjust as needed */
   }
   
   .track-button-add,
@@ -228,6 +229,15 @@ html, body {
     margin-right: 10px;
     object-fit: cover; /* Ensures the image fits within its container */
   }
+
+  .playlist-container .track-album-image {
+    width: 100px; /* Set the desired width for the images in the playlist */
+    height: 100px; /* Set the desired height for the images in the playlist */
+    margin-right: 10px;
+    object-fit: cover;
+    border-radius: 5px; /* Optional for rounded corners */
+  }
+  
   
   /* SearchResults styles */
   .search-results-grid {
