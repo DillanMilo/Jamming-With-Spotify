@@ -170,7 +170,7 @@ html, body {
   
   /* Track styles */
   .track-box {
-    background-color: #2d3748; /* Equivalent to gray.800 */
+    background-color: #97df9e; /* Equivalent to gray.800 */
     border-radius: 8px;
     padding: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* md shadow */
@@ -222,6 +222,11 @@ html, body {
   .track-button-add:disabled {
     background-color: #a0aec0; /* greyed out */
     cursor: not-allowed;
+  }
+
+  .track-album-image {
+    margin-right: 10px;
+    object-fit: cover; /* Ensures the image fits within its container */
   }
   
   /* SearchResults styles */
