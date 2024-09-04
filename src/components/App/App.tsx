@@ -156,6 +156,7 @@ function App() {
               onReset={handleReset}
               hasSearched={hasSearched}
             />
+
             <div
               className="flex"
               style={{
@@ -193,6 +194,28 @@ function App() {
                     marginLeft: isLargerScreen ? "10%" : "0",
                   }}
                 >
+                  {/* Adjusted the width of the playlist container */}
+                  {isLargerScreen && (
+                    <div
+                      className="playlist-container"
+                      style={{
+                        width: "95%", // Increased width for the playlist container
+                        marginRight: "100px",
+                        padding: "16px",
+                        maxHeight: "500px",
+                        overflowY: "auto",
+                      }}
+                    >
+                      <Playlist
+                        tracks={playlistTracks}
+                        onRemove={removeTrackFromPlaylist}
+                        onSave={savePlaylist}
+                        playlistName={playlistName}
+                        onNameChange={handleNameChange}
+                      />
+                    </div>
+                  )}
+
                   <SearchResults
                     searchResults={searchResults}
                     onAdd={addTrackToPlaylist}

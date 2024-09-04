@@ -19,6 +19,7 @@ html, body {
   z-index: -1; /* Behind everything */
 }
 
+
   /* Base styles for the app */
   #root {
     display: flex;
